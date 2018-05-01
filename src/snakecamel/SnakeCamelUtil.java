@@ -3,7 +3,7 @@ package snakecamel;
 public class SnakeCamelUtil {
 
 	public static String snakeToCamelcase(String snake_case) {
-		String[] words = snake_case.split("_");
+		String[] words = snake_case.split("_", -1); //空文字も全て配列に格納する
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < words.length ; i++) {
 			sb.append(capitalize(words[i]));
@@ -30,6 +30,7 @@ public class SnakeCamelUtil {
 	}
 	
 	public static String capitalize(String s) {
+		if(s.length() == 0) { return ""; } //空文字なら空文字を返す
 		char first = s.charAt(0);
 		char upperFirst = Character.toUpperCase(first);
 		String rest = s.substring(1);
